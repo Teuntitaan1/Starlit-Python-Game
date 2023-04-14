@@ -11,13 +11,14 @@ class App:
         self.GAMEINFO = GameInfo(self.SCREEN)
 
     @staticmethod
-    def Start():
+    def Start(GameCaption):
         print("Starting Game")
-        pygame.display.set_caption("Starlit")
+        pygame.init()
+        pygame.display.set_caption(GameCaption)
         # pygame.display.set_icon()
 
-    def Run(self):
-        self.Start()
+    def Run(self, GameCaption="Starlit"):
+        self.Start(GameCaption)
         while self.GAMEINFO.Running:
             self.Update()
         self.Quit()

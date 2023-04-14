@@ -18,7 +18,7 @@ class Entity_Base:
         self.Rect = pygame.Rect((self.width, self.height), (self.x, self.y))
 
     def Get_Render_Info(self):
-        return self.Sprite
+        return self.Sprite, self.Get_Position()
 
     # Manages collision behaviour on an entity
     def HandleCollision(self):

@@ -1,7 +1,9 @@
 import time
+import pygame
 # Imports all the entities i currently have created
 from .Render_Manager import Render_Manager
 from .Entity_Manager import Entity_Manager
+from .Ui import Ui_Manager
 
 
 class GameInfo:
@@ -13,13 +15,14 @@ class GameInfo:
 
         self.Entity_Manager = Entity_Manager()
         self.Render_Manager = Render_Manager(screen)
+        self.Ui_Manager = Ui_Manager(self.Render_Manager)
 
     def Update(self):
 
         # Deltatime implementation
-        newtime = time.time()
-        self.DeltaTime = newtime - self.OldTime
-        self.OldTime = newtime
+        NewTime = time.time()
+        self.DeltaTime = NewTime - self.OldTime
+        self.OldTime = NewTime
 
         # Statistics
         self.FramesElapsed += 1
