@@ -13,7 +13,11 @@ class GameInfo:
         self.OldTime = time.time()
         self.DeltaTime = 0
 
-        self.Entity_Manager = Entity_Manager()
+        # Window background
+        self.BackgroundImage = pygame.Surface.copy(screen)
+
+        # All systems
+        self.Entity_Manager = Entity_Manager(self)
         self.Render_Manager = Render_Manager(screen)
         self.Ui_Manager = Ui_Manager(self.Render_Manager)
 
@@ -27,5 +31,9 @@ class GameInfo:
         # Statistics
         self.FramesElapsed += 1
 
+        # Clears the screen
+        self.Render_Manager.Clear_Screen(self.BackgroundImage)
+
         # All system update calls
-        self.Entity_Manager.Update(self.Render_Manager)
+        self.Entity_Manager.Update()
+        self.Ui_Manager.RenderText(str(self.FramesElapsed))

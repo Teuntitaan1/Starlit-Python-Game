@@ -8,4 +8,4 @@ class Ui_Manager:
         self.Font = pygame.font.SysFont("Arial", 24)
 
     def RenderText(self, Text, Position=(0, 0), Color=(255, 255, 255)):
-        self.Render_Manager.Render((self.Font.render(Text, True, Color), Position))
+        self.Render_Manager.Render((self.Font.render(str(Text), True, Color), Position))
