@@ -10,7 +10,7 @@ class GameInfo:
     def __init__(self, screen):
         self.Running = True
         self.FramesElapsed = 0
-        self.OldTime = time.time()
+        self.OldTime, self.StartTime = time.time(), time.time()
         self.DeltaTime = 0
 
         # Window background
@@ -36,4 +36,4 @@ class GameInfo:
 
         # All system update calls
         self.Entity_Manager.Update()
-        self.Ui_Manager.RenderText(str(self.FramesElapsed))
+        self.Ui_Manager.Render_Text(str(self.FramesElapsed))

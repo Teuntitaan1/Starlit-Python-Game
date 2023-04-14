@@ -3,7 +3,7 @@ import pygame
 
 # Every single entity has this
 class Entity_Base:
-    def __init__(self, sprite, position, GameInfo):
+    def __init__(self, sprite, position, GameInfo, Pushable=False, Mass=0):
         self.Sprite = sprite
         if type(self.Sprite) == pygame.Surface:
             self.width, self.height = sprite.get_width(), sprite.get_height()
@@ -16,6 +16,10 @@ class Entity_Base:
         # GAMEINFO is used to acces all systems in the program
         self.GAMEINFO = GameInfo
 
+        # Physics variables
+        self.IsPushable = Pushable
+        self.Mass = Mass
+
     def Update(self):
         # Updates the rect
         self.Rect = pygame.Rect((self.x, self.y), (self.width, self.height))
@@ -24,8 +28,8 @@ class Entity_Base:
         return self.Sprite, self.Get_Position()
 
     # Manages collision behaviour on an entity
-    def HandleCollision(self):
-        print(f"{self} I am colliding at {self.Get_Position()}!")
+    def Handle_Collision(self, Colliding):
+        print(f"{self} I am colliding with {Colliding} at {self.Get_Position()}!")
 
     def Get_Dimensions(self):
         return self.width, self.height

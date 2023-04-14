@@ -1,4 +1,5 @@
 import pygame
+import time
 # custom classes import
 from .GameInfo import GameInfo
 
@@ -33,4 +34,6 @@ class App:
         pygame.display.update()
 
     def Quit(self):
-        print(f"Screen quit after {self.GAMEINFO.FramesElapsed} frames elapsed.")
+        print(f"Screen quit after {self.GAMEINFO.FramesElapsed} frames elapsed.\n"
+              f"Program ran for {round(time.time() - self.GAMEINFO.StartTime, 1)} seconds.\n"
+              f"An avarage of {round(self.GAMEINFO.FramesElapsed/(time.time() - self.GAMEINFO.StartTime), 1)} fps was achieved")
