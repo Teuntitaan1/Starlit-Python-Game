@@ -8,9 +8,8 @@ class Entity_Manager:
         self.EntityList = []
         self.GAMEINFO = GameInfo
         Sprite = pygame.image.load("Assets/Pictures/cat.jpg")
-        self.EntityList.append(Source.Game.Entities.Player(Sprite, (50, 50), GameInfo))
-        self.EntityList.append(Source.Game.Entities.Entity_Base(pygame.transform.scale(Sprite, (50, 50)), (300, 250), GameInfo, True))
-        self.EntityList.append(Source.Game.Entities.Entity_Base(Sprite, (300, 100), GameInfo))
+        self.EntityList.append(Source.Game.Entities.Player(Sprite, (0.1, 0.1), GameInfo))
+        self.EntityList.append(Source.Game.Entities.Entity_Base(Sprite, (0.4, 0.4), GameInfo, False))
 
     def Update(self):
         for Entity in self.EntityList:

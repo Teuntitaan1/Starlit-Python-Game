@@ -1,18 +1,17 @@
 from .Entity_Base import Entity_Base
-from Source.Game.CollisionTypes import Push, Stop
 import pygame
 
 
 class Player(Entity_Base):
     def __init__(self, sprite, position, GameInfo):
         super().__init__(sprite, position, GameInfo)
-        self.Movement_Speed = 100
+        self.Movement_Speed = 0.1
 
     def Update(self):
         super().Update()
         self.Handle_Movement()
         self.Check_For_Collision()
-        self.GAMEINFO.Ui_Manager.Render_Text(self.Get_Position(), (self.x, self.y - 40))
+        self.GAMEINFO.Ui_Manager.Render_Text(self.Get_Position(), (0.0, 0.1))
 
     def Check_For_Collision(self):
         for Entity in self.GAMEINFO.Entity_Manager.EntityList:
@@ -24,9 +23,9 @@ class Player(Entity_Base):
 
     def Handle_Collision(self, Colliding):
         if Colliding.IsPushable:
-            Push(self, Colliding)
+            self.GAMEINFO.Physics_Manager.CollisionPush(self, Colliding)
         else:
-            Stop(self, Colliding)
+            self.GAMEINFO.Physics_Manager.CollisionStop(self, Colliding)
 
     def Handle_Movement(self):
         keys = pygame.key.get_pressed()
