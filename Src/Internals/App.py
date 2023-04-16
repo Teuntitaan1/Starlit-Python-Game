@@ -7,7 +7,7 @@ from .GameInfo import GameInfo
 class App:
     def __init__(self, SCREENSIZE):
         # SCREEN contains all render functions
-        self.SCREEN = pygame.display.set_mode(SCREENSIZE)
+        self.SCREEN = pygame.display.set_mode(SCREENSIZE, pygame.RESIZABLE)
         # GAMEINFO contains all game related functions
         self.GAMEINFO = GameInfo(self.SCREEN)
 
@@ -30,6 +30,11 @@ class App:
             # exit checker
             if event.type == pygame.QUIT:
                 self.GAMEINFO.Running = False
+            if event.type == pygame.VIDEORESIZE:
+                # Updates the screen surface
+                self.SCREEN = self.GAMEINFO.SCREEN = self.GAMEINFO.Render_Manager.SCREEN = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
+                # Triggers a rescaling of the sprite
+                self.GAMEINFO.Get_Active_Level_Class().Entity_Manager.Rescale_Entities()
         self.GAMEINFO.Update()
         pygame.display.update()
 

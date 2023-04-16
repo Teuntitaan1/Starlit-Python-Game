@@ -4,8 +4,8 @@ import pygame
 
 
 class Player(Entity_Base):
-    def __init__(self, sprite, position, GameInfo, Physics_Component=Player_Physics()):
-        super().__init__(sprite, position, GameInfo, Physics_Component)
+    def __init__(self, sprite, position, scale, GameInfo, Physics_Component=Player_Physics()):
+        super().__init__(sprite, position, scale, GameInfo, Physics_Component)
         self.Movement_Speed = 0.15
 
     def Update(self):

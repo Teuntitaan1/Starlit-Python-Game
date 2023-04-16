@@ -16,3 +16,7 @@ class Entity_Manager:
 
     def Remove_Entity(self, Entity):
         self.EntityList.remove(Entity)
+
+    def Rescale_Entities(self):
+        for Entity in self.EntityList:
+            Entity.Scale_Sprite()

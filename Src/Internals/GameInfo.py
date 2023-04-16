@@ -20,7 +20,7 @@ class GameInfo:
         self.Render_Manager = Src.Internals.Managers.Render_Manager(self.SCREEN)
         self.Ui_Manager = Src.Internals.Managers.Ui_Manager(self.Render_Manager)
 
-        self.Player = Player(pygame.image.load("Assets/Pictures/cat.jpg"), (0.1, 0.1), self)
+        self.Player = Player(pygame.image.load("Assets/Pictures/cat.jpg"), (0.1, 0.1), (0.1, 0.1), self)
 
         # 4 X 4 grid
         self.LevelList = [[], [], [], []]

@@ -3,17 +3,17 @@ import pygame
 
 # Every single entity has this
 class Entity_Base:
-    def __init__(self, sprite, position, GameInfo, Physics_Component):
-        self.Sprite = sprite
+    def __init__(self, sprite, position, scale, GameInfo, Physics_Component):
 
         # GAMEINFO is used to access all systems in the program
         self.GAMEINFO = GameInfo
         self.Physics_Component = Physics_Component
 
-        if type(self.Sprite) == pygame.Surface:
-            self.width, self.height = GameInfo.Render_Manager.Convert_PixelUnits_WorldUnits((sprite.get_width(), sprite.get_height()))
-        elif type(self.Sprite) == pygame.Rect:
-            self.width, self.height = GameInfo.GAMEINFO.Render_Manager.Convert_PixelUnits_WorldUnits((sprite.width, sprite.height))
+        self.width, self.height = scale[0], scale[1]
+
+        self.Original_Sprite = sprite
+        SpriteSize = GameInfo.Render_Manager.Convert_WorldUnits_ToPixelUnits((self.width, self.height))
+        self.Sprite = pygame.transform.scale(sprite, (SpriteSize[0], SpriteSize[1]))
 
         self.x, self.y = position[0], position[1]
         self.Rect = pygame.Rect(GameInfo.Render_Manager.Convert_WorldUnits_ToPixelUnits((self.x, self.y)), GameInfo.Render_Manager.Convert_WorldUnits_ToPixelUnits((self.width, self.height)))
@@ -34,6 +34,11 @@ class Entity_Base:
 
     def Get_Position(self):
         return self.x, self.y
+
+    # scales the sprite
+    def Scale_Sprite(self):
+        SpriteSize = self.GAMEINFO.Render_Manager.Convert_WorldUnits_ToPixelUnits((self.width, self.height))
+        self.Sprite = pygame.transform.scale(self.Original_Sprite, (SpriteSize[0], SpriteSize[1]))
 
     def __str__(self):
         return f"({self.Get_Position()}), ({self.Get_Dimensions()})"
