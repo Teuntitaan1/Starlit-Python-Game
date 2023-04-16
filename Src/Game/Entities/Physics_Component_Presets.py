@@ -8,4 +8,4 @@ class Player_Physics(Physics_Component):
 
 class Wall_Physics(Physics_Component):
     def __init__(self):
-        super().__init__(True, True, 0.05)
+        super().__init__(False, True, 0.05)

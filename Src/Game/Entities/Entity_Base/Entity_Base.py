@@ -33,3 +33,6 @@ class Entity_Base:
 
     def Get_Position(self):
         return self.x, self.y
+
+    def __str__(self):
+        return f"({self.Get_Position()}), ({self.Get_Dimensions()})"

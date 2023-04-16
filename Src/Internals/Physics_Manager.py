@@ -2,9 +2,13 @@ class Physics_Manager:
     def __init__(self, GameInfo):
         self.GAMEINFO = GameInfo
         self.CollisionTolerance = 3
+        self.Gravity = 0.01
 
-    def Update(self):
-        pass
+    def Update(self, Entity):
+        if Entity.Physics_Component.Rigid:
+            # Gravity
+            Entity.y += Entity.Physics_Component.Acceleration
+            # Entity.Physics_Component.Acceleration += Entity.Physics_Component.Mass * self.Gravity * self.GAMEINFO.DeltaTime
 
     # All collision types
     def CollisionPassThrough(self, Pusher, Pushed):
@@ -30,6 +34,7 @@ class Physics_Manager:
         # Collision from the top
         if abs(Mover.Rect.bottom - UnMovable.Rect.top) < self.CollisionTolerance:
             Mover.y = self.GAMEINFO.Render_Manager.Convert_PixelUnits_WorldUnits((0, UnMovable.Rect.top))[1] - Mover.Get_Dimensions()[1]
+            Mover.Physics_Component.Acceleration = 0
         # Collision from the bottom
         if abs(Mover.Rect.top - UnMovable.Rect.bottom) < self.CollisionTolerance:
             Mover.y = self.GAMEINFO.Render_Manager.Convert_PixelUnits_WorldUnits((0, UnMovable.Rect.bottom))[1]
