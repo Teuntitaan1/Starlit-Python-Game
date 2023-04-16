@@ -17,7 +17,7 @@ class GameInfo:
         self.SCREEN = screen
         self.ActiveLevel = (0, 0)
         # Global Managers
-        self.Render_Manager = Src.Internals.Managers.Render_Manager(self.SCREEN)
+        self.Render_Manager = Src.Internals.Managers.Render_Manager(self)
         self.Ui_Manager = Src.Internals.Managers.Ui_Manager(self.Render_Manager)
 
         self.Player = Player(pygame.image.load("Assets/Pictures/cat.jpg"), (0.1, 0.1), (0.1, 0.1), self)

@@ -7,6 +7,7 @@ class Level:
         self.Entity_Manager = Entity_Manager
 
         self.BackgroundImage = BackGroundImage
+        self.OriginalBackgroundImage = BackGroundImage
 
         # Fluff
         # Name allows the user to navigate the areo

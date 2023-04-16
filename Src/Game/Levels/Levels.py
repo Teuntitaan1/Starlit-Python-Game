@@ -26,3 +26,7 @@ class Level_1(Level):
             self.GAMEINFO.Player.x = 0
             ActiveLevel = self.GAMEINFO.Get_Active_Level()
             self.GAMEINFO.Set_Active_Level((ActiveLevel[0] + 1, ActiveLevel[1]))
+
+    def Rescale(self):
+        self.Entity_Manager.Rescale_Entities()
+        self.BackgroundImage = pygame.transform.scale(self.OriginalBackgroundImage, self.GAMEINFO.Get_Screen_Dimensions())
