@@ -1,6 +1,7 @@
 class Physics_Manager:
-    def __init__(self, GameInfo):
-        self.GAMEINFO = GameInfo
+    def __init__(self, parent):
+        self.PARENT = parent
+        self.GAMEINFO = parent.GAMEINFO
         self.CollisionTolerance = 3
         self.Gravity = 0.01
 
@@ -18,16 +19,16 @@ class Physics_Manager:
         # Pushes the entity
         # Collision from the top
         if abs(Pusher.Rect.bottom - Pushed.Rect.top) < self.CollisionTolerance:
-            Pushed.y += Pusher.Movement_Speed * Pusher.GAMEINFO.DeltaTime
+            Pushed.y += Pusher.Movement_Speed * self.GAMEINFO.DeltaTime
         # Collision from the bottom
         if abs(Pusher.Rect.top - Pushed.Rect.bottom) < self.CollisionTolerance:
-            Pushed.y -= Pusher.Movement_Speed * Pusher.GAMEINFO.DeltaTime
+            Pushed.y -= Pusher.Movement_Speed * self.GAMEINFO.DeltaTime
         # Collision from the left
         if abs(Pusher.Rect.right - Pushed.Rect.left) < self.CollisionTolerance:
-            Pushed.x += Pusher.Movement_Speed * Pusher.GAMEINFO.DeltaTime
+            Pushed.x += Pusher.Movement_Speed * self.GAMEINFO.DeltaTime
         # Collision from the right
         if abs(Pusher.Rect.left - Pushed.Rect.right) < self.CollisionTolerance:
-            Pushed.x -= Pusher.Movement_Speed * Pusher.GAMEINFO.DeltaTime
+            Pushed.x -= Pusher.Movement_Speed * self.GAMEINFO.DeltaTime
 
     def CollisionStop(self, Mover, UnMovable):
         # Pushes the entity

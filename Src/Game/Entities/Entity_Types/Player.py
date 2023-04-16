@@ -17,7 +17,7 @@ class Player(Entity_Base):
         super().Update()
 
     def Check_For_Collision(self):
-        for Entity in self.GAMEINFO.Entity_Manager.EntityList:
+        for Entity in self.GAMEINFO.Get_Active_Level_Class().Entity_Manager.EntityList:
             if Entity != self:
                 # Collides
                 if pygame.Rect.colliderect(self.Rect, Entity.Rect):
@@ -27,11 +27,11 @@ class Player(Entity_Base):
     def Handle_Collision(self, Colliding):
         if Colliding.Physics_Component.Solid:
             if Colliding.Physics_Component.Rigid:
-                self.GAMEINFO.Physics_Manager.CollisionPush(self, Colliding)
+                self.GAMEINFO.Get_Active_Level_Class().Physics_Manager.CollisionPush(self, Colliding)
             else:
-                self.GAMEINFO.Physics_Manager.CollisionStop(self, Colliding)
+                self.GAMEINFO.Get_Active_Level_Class().Physics_Manager.CollisionStop(self, Colliding)
         else:
-            self.GAMEINFO.Physics_Manager.CollisionPassThrough(self, Colliding)
+            self.GAMEINFO.Get_Active_Level_Class().Physics_Manager.CollisionPassThrough(self, Colliding)
 
     def Handle_Movement(self):
         keys = pygame.key.get_pressed()
