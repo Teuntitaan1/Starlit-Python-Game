@@ -3,7 +3,7 @@ import pygame
 
 # Every single entity has this
 class Entity_Base:
-    def __init__(self, sprite, position, GameInfo, Pushable=False, Mass=0):
+    def __init__(self, sprite, position, GameInfo, Physics_Component):
         self.Sprite = sprite
         if type(self.Sprite) == pygame.Surface:
             self.width, self.height = GameInfo.Render_Manager.Convert_PixelUnits_WorldUnits((sprite.get_width(), sprite.get_height()))
@@ -15,10 +15,7 @@ class Entity_Base:
 
         # GAMEINFO is used to acces all systems in the program
         self.GAMEINFO = GameInfo
-
-        # Physics variables
-        self.IsPushable = Pushable
-        self.Mass = Mass
+        self.Physics_Component = Physics_Component
 
     def Update(self):
         # Updates the rect

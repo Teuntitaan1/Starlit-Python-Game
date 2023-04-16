@@ -1,6 +1,5 @@
 import pygame
-
-import Source.Game.Entities
+from Src.Game import Player, Wall
 
 
 class Entity_Manager:
@@ -8,8 +7,8 @@ class Entity_Manager:
         self.EntityList = []
         self.GAMEINFO = GameInfo
         Sprite = pygame.image.load("Assets/Pictures/cat.jpg")
-        self.EntityList.append(Source.Game.Entities.Player(Sprite, (0.1, 0.1), GameInfo))
-        self.EntityList.append(Source.Game.Entities.Entity_Base(Sprite, (0.4, 0.4), GameInfo, False))
+        self.EntityList.append(Player(Sprite, (0.1, 0.1), GameInfo))
+        self.EntityList.append(Wall(Sprite, (0.4, 0.4), GameInfo))
 
     def Update(self):
         for Entity in self.EntityList:

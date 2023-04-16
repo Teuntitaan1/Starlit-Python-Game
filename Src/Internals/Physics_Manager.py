@@ -1,9 +1,13 @@
 class Physics_Manager:
     def __init__(self, GameInfo):
         self.GAMEINFO = GameInfo
-        self.CollisionTolerance = 2
+        self.CollisionTolerance = 3
 
     def Update(self):
+        pass
+
+    # All collision types
+    def CollisionPassThrough(self, Pusher, Pushed):
         pass
 
     def CollisionPush(self, Pusher, Pushed):

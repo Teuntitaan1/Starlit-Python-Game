@@ -1,17 +1,19 @@
-from .Entity_Base import Entity_Base
+from Src.Game.Entities.Physics_Component_Presets import Player_Physics
+from Src.Game.Entities.Entity_Base import Entity_Base
 import pygame
 
 
 class Player(Entity_Base):
-    def __init__(self, sprite, position, GameInfo):
-        super().__init__(sprite, position, GameInfo)
+    def __init__(self, sprite, position, GameInfo, Physics_Component=Player_Physics()):
+        super().__init__(sprite, position, GameInfo, Physics_Component)
         self.Movement_Speed = 0.1
 
     def Update(self):
-        super().Update()
         self.Handle_Movement()
         self.Check_For_Collision()
         self.GAMEINFO.Ui_Manager.Render_Text(self.Get_Position(), (0.0, 0.1))
+
+        super().Update()
 
     def Check_For_Collision(self):
         for Entity in self.GAMEINFO.Entity_Manager.EntityList:
@@ -22,10 +24,13 @@ class Player(Entity_Base):
                     Entity.Handle_Collision(self)
 
     def Handle_Collision(self, Colliding):
-        if Colliding.IsPushable:
-            self.GAMEINFO.Physics_Manager.CollisionPush(self, Colliding)
+        if Colliding.Physics_Component.Solid:
+            if Colliding.Physics_Component.Rigid:
+                self.GAMEINFO.Physics_Manager.CollisionPush(self, Colliding)
+            else:
+                self.GAMEINFO.Physics_Manager.CollisionStop(self, Colliding)
         else:
-            self.GAMEINFO.Physics_Manager.CollisionStop(self, Colliding)
+            self.GAMEINFO.Physics_Manager.CollisionPassThrough(self, Colliding)
 
     def Handle_Movement(self):
         keys = pygame.key.get_pressed()
