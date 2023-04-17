@@ -1,3 +1,5 @@
+import time
+
 import Internals
 import pygame
 import sys
@@ -6,4 +8,5 @@ import sys
 Done = Internals.App((800, 800)).Run()
 
 pygame.quit()
+time.sleep(3)
 sys.exit()

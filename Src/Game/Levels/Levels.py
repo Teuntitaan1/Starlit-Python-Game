@@ -1,7 +1,9 @@
+import random
+
 from .Level_Base import Level
 import Src.Internals.Managers
 import Src.Game.Entities
-
+from Src.Game.Entities.Entity_Base import Physics_Component
 import pygame
 
 
@@ -15,7 +17,7 @@ class Level_1(Level):
 
         # All entity's except the Player
         Sprite = pygame.image.load("Assets/Pictures/cat.jpg")
-        self.Entity_Manager.Add_Entity(Src.Game.Entities.Wall(Sprite, (0.1, 0.4), (0.1, 0.1), self.GAMEINFO))
+        self.Entity_Manager.Add_Entity(Src.Game.Entities.Wall(Sprite, (round(random.uniform(0, 0.9), 1), round(random.uniform(0, 0.9), 1)), (0.1, 0.1), self.GAMEINFO, Physics_Component(True, True,0.1)))
 
     def Update(self):
         super().Update()

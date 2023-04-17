@@ -9,10 +9,12 @@ import Src.Internals.Managers
 
 class GameInfo:
     def __init__(self, screen):
+        StartTime = time.time()
+        print("Starting Gameinfo initialization\n")
         # Global variables
         self.Running = True
         self.FramesElapsed = 0
-        self.OldTime, self.StartTime = time.time(), time.time()
+        self.OldTime = self.StartTime = time.time()
         self.DeltaTime = 0
         self.SCREEN = screen
         self.ActiveLevel = (0, 0)
@@ -22,14 +24,16 @@ class GameInfo:
 
         self.Player = Player(pygame.image.load("Assets/Pictures/cat.jpg"), (0.1, 0.1), (0.1, 0.1), self)
 
-        # 4 X 4 grid
+        # Initializes all the levels in a 4 X 4 grid
         self.LevelList = [[], [], [], []]
         for i in range(4):
             for j in range(4):
                 Level = Src.Game.Levels.Level_1(self, f"({i}, {j})")
                 Level.Entity_Manager.Add_Entity(self.Player)
                 self.LevelList[i].append(Level)
-        print(self.LevelList)
+                print(f"Initialized level: {Level.Name}")
+
+        print(f"\nGameInfo initialization took {round(time.time() - StartTime, 1)}")
 
     def Update(self):
 
