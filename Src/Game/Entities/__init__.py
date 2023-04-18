@@ -1,1 +1,1 @@
-from .Entity_Types import Player, Wall
+from .Entity_Types import Player, Wall, Trigger

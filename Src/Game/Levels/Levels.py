@@ -17,7 +17,9 @@ class Level_1(Level):
 
         # All entity's except the Player
         Sprite = pygame.image.load("Assets/Pictures/cat.jpg")
-        self.Entity_Manager.Add_Entity(Src.Game.Entities.Wall(Sprite, (round(random.uniform(0, 0.9), 1), round(random.uniform(0, 0.9), 1)), (0.1, 0.1), self.GAMEINFO, Physics_Component(True, True,0.1)))
+        self.Entity_Manager.Add_Entity(
+            Src.Game.Entities.Trigger(Sprite, (round(random.uniform(0, 0.9), 1), round(random.uniform(0, 0.9), 1)),
+                                   (0.1, 0.1), self.GAMEINFO, self.On_Trigger_Collide))
 
     def Update(self):
         super().Update()
@@ -32,3 +34,6 @@ class Level_1(Level):
     def Rescale(self):
         self.Entity_Manager.Rescale_Entities()
         self.BackgroundImage = pygame.transform.scale(self.OriginalBackgroundImage, self.GAMEINFO.Get_Screen_Dimensions())
+
+    def On_Trigger_Collide(self):
+        print(str(self.GAMEINFO.ActiveLevel))
